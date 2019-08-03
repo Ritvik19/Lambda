@@ -1,3 +1,3 @@
 # Sherlock-Holmes
 
-A chrome extension to scrap data from webpages
+A chrome extension to scrape data from webpages
