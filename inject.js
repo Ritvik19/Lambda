@@ -1,6 +1,10 @@
 // this is the code which will be injected into a given page...
 
 (function() {
+	function trim(x) {
+		return x.replace(/^\s+|\s+$/g, '');
+	}
+
 	var div = document.createElement('div');
 	div.style.position = 'fixed';
 	div.style.top = 0;
@@ -22,17 +26,27 @@
 	table.style.border = "1px solid #000000";
 
 	var css_ = window.prompt('Enter the css selector for the elements to be scrapped')
-	var att_ = window.prompt('Enter the attribute to be scrapped', 'text')
-	var elems = document.querySelectorAll(css_)
+	var att_ = window.prompt('Enter the attribute to be scrapped', 'text').split(',')
+	var att_ = att_.map(trim)
+	console.log(att_)
 
+	var elems = document.querySelectorAll(css_)
+	console.log('query selected')
+	tablecontent = ''
 	for(var i=0; i<elems.length; i++)
 	{
-			if(att_ == 'text')
-				table.innerHTML += '<tr><td>'+i+'</td><td>'+elems[i].innerHTML+'</td></tr>'
+		tablecontent += '<tr><td>'+i+'</td>'
+		for(var j=0; j<att_.length; j++)
+		{
+			if(att_[j] == 'text')
+				tablecontent += '<td>'+elems[i].innerHTML+'</td>'
 			else
-				table.innerHTML += '<tr><td>'+i+'</td><td>'+elems[i].getAttribute(att_)+'</td></tr>'
+				tablecontent += '<td>'+elems[i].getAttribute(att_[j])+'</td>'
+		}
+		tablecontent += '</tr>'
 	}
-
+	table.innerHTML = tablecontent
+	console.log(tablecontent)
 	var btn = document.createElement('button');
 	btn.style.position = 'fixed';
 	btn.style.top = 0;
