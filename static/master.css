@@ -1,0 +1,32 @@
+:root{
+  --c1: #1b1b1b;
+  --c2: #323232;
+  --c3: #ffe7d0;
+  --c4: #fc6e20;
+}
+
+*, h1, h2, h3, h4, h5, h6{
+  color: var(--c4) !important;
+  font-family: 'Cabin', sans-serif;
+
+}
+
+header{
+  height: 100vh;
+  background-image: url("bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav{
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+nav a, .dropdown-content a{
+  color: var(--c4) !important;
+}
+
+#mobile-demo, .dropdown-content{
+  background-color: var(--c2) !important;
+}
