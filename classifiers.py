@@ -29,7 +29,7 @@ with open(f'{DIR_INS}/vocab.json', 'r') as f:
     vocab = json.loads(json.load(f))
 
 def inspyrobot(text=''):
-    if text == '':
+    if text == '' or q(text) not in ins_model.keys:
         text = str(random.choice(vocab))
     sentence_finished = False
     while not sentence_finished:

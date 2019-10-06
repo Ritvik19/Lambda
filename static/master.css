@@ -41,6 +41,10 @@ nav{
   background-color: rgba(0, 0, 0, 0) !important;
 }
 
+a:hover{
+  color: var(--c3) !important;
+}
+
 nav a, .dropdown-content a{
   color: var(--c4) !important;
 }

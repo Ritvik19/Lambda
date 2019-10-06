@@ -13,13 +13,23 @@ def home():
 def url_clf():
     form = forms.URLForm()
     if form.url.data:
-        message=[
+        message = [
             classifiers.url_clf(form.url.data, classifiers.url_model1),
             classifiers.url_clf(form.url.data, classifiers.url_model2),
             classifiers.url_clf(form.url.data, classifiers.url_model3),
         ]
         return render_template('url.html', form=form, message=enumerate(message))
     return render_template('url.html', form=form)
+
+@app.route('/inspyrobot', methods=['GET', 'POST'])
+def inspyrobot():
+    form = forms.INSForm(formdata=None)
+    print(form.keyword.data)
+    if form.keyword.data:
+        print(form.keyword.data)
+        message = classifiers.inspyrobot(form.keyword.data.strip())
+        return render_template('inspyrobot.html', form=form, message=message)
+    return render_template('inspyrobot.html', form=form)
 
 @app.route('/inspyre')
 def inspyre():
