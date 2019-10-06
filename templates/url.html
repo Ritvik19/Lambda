@@ -19,9 +19,12 @@
 {% if message %}
 
 <div class="z-depth-3 w3-padding">
-  {{ message }}
+  <h4>Results</h4>
+  {% for m in message %}
+    Model {{ m[0] }} : {{ m[1] }} <br>
+  {% endfor %}
 </div>
-
+<br><br>
 {% endif %}
 
 {% endblock %}

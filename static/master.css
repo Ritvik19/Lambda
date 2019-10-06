@@ -5,14 +5,32 @@
   --c4: #fc6e20;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--c1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--c4);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c4);
+}
+
 *, h1, h2, h3, h4, h5, h6{
   color: var(--c4) !important;
   font-family: 'Acme', sans-serif;
-
 }
 
 .body{
-  min-height: 100vh;
   background-image: url("bg.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -31,12 +49,12 @@ nav a, .dropdown-content a{
   background-color: var(--c2) !important;
 }
 
+main{
+  min-height: 72vh;
+}
+
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  /* text-align: center; */
 }
 
 /* label color */
