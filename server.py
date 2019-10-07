@@ -50,5 +50,13 @@ def sentiment():
         return render_template('sentiment.html', form=form, message=message)
     return render_template('sentiment.html', form=form)
 
+@app.route('/spam',methods=['GET', 'POST'])
+def spam():
+    form = forms.SpamForm()
+    if form.sentence.data:
+        message = classifiers.spam_clf(form.sentence.data)
+        return render_template('spam.html', form=form, message=message)
+    return render_template('spam.html', form=form)
+
 if __name__ == '__main__':
     app.run(debug=True)

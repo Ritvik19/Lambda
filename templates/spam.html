@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form action="" method="post">
+  <h1>Spam Filter</h1>
+  <h5>Identify a message as spam or ham</h5>
+  <br><br>
+
+  <div class="input-field">
+    {{ form.sentence() }}
+    {{ form.sentence.label() }}
+  </div>
+  <div class="input-field">
+    {{ form.submit(class="btn") }}
+  </div>
+</form>
+<br><br>
+
+{% if message %}
+
+<div class="z-depth-3 w3-padding">
+  <h4>Results</h4>
+  {{ message }}
+</div>
+<br><br>
+{% endif %}
+
+{% endblock %}

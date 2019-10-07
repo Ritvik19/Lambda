@@ -7,6 +7,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 from URLFeatures import websiteInfo
 from CuisineFeatures import clean_ingredients
+from TextFeatures import cleanText
 
 # URL CLF
 DIR_URL = 'E:/Models/URL-Classfier'
@@ -43,6 +44,18 @@ def senti_clf(sentence):
         return 'Negetive'
     else :
         return 'Neutral'
+
+# SPAM CLF
+
+SPAM_DIR = 'E:/Models/Spam-Filter'
+spam_vectorizer = pickle.load(open(f'{SPAM_DIR}/Vectorizer-spam.pickle', 'rb'))
+spam_classifier = pickle.load(open(f'{SPAM_DIR}/SpamClassifier.pickle', 'rb'))
+
+def spam_clf(text):
+    text = [cleanText(str(text), True, False, False, False)]
+    vector = spam_vectorizer.transform(text)
+    return 'Spam' if spam_classifier.predict(vector)[0] == 1 else 'Ham'
+
 
 # INSPYROBOT
 

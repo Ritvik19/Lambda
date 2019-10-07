@@ -16,3 +16,7 @@ class CuisineForm(FlaskForm):
 class SentimentForm(FlaskForm):
     sentence = StringField('Sentence')
     submit = SubmitField('Analyse')
+
+class SpamForm(FlaskForm):
+    sentence = StringField('Sentence')
+    submit = SubmitField('Analyse')
