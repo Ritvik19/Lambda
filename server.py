@@ -42,5 +42,13 @@ def cuisine():
         return render_template('cuisine.html', form=form, message=message)
     return render_template('cuisine.html', form=form)
 
+@app.route('/sentiment',methods=['GET', 'POST'])
+def sentiment():
+    form = forms.SentimentForm()
+    if form.sentence.data:
+        message = classifiers.senti_clf(form.sentence.data)
+        return render_template('sentiment.html', form=form, message=message)
+    return render_template('sentiment.html', form=form)
+
 if __name__ == '__main__':
     app.run(debug=True)

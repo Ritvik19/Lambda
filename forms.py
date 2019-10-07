@@ -12,3 +12,7 @@ class INSForm(FlaskForm):
 class CuisineForm(FlaskForm):
     ingredients = StringField('Ingredients', render_kw={"placeholder": "ingredient1, ingredient2"})
     submit = SubmitField('Identify')
+
+class SentimentForm(FlaskForm):
+    sentence = StringField('Sentence')
+    submit = SubmitField('Analyse')

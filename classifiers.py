@@ -3,6 +3,7 @@ import json, random, re
 import numpy as np
 import pandas as pd
 from nltk import ngrams
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 from URLfeatures import websiteInfo
 
@@ -82,6 +83,18 @@ def csn_clf(query):
         except ValueError as e:
             pass
     return csn_model.predict(feature)[0]
+
+# SENTIMENT
+
+def senti_clf(sentence):
+    sia_obj = SentimentIntensityAnalyzer()
+    sentiment_dict = sia_obj.polarity_scores(sentence)
+    if sentiment_dict['compound'] >= 0.05 :
+        return 'Positive'
+    elif sentiment_dict['compound'] <= - 0.05 :
+        return 'Negetive'
+    else :
+        return 'Neutral'
 
 # INSPYROBOT
 
