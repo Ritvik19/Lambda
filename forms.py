@@ -8,3 +8,7 @@ class URLForm(FlaskForm):
 class INSForm(FlaskForm):
     keyword = StringField('Keyword', default=' ')
     submit = SubmitField('Inspyre')
+
+class CuisineForm(FlaskForm):
+    ingredients = StringField('Ingredients', render_kw={"placeholder": "ingredient1, ingredient2"})
+    submit = SubmitField('Identify')

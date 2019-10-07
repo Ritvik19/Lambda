@@ -23,10 +23,8 @@ def url_clf():
 
 @app.route('/inspyrobot', methods=['GET', 'POST'])
 def inspyrobot():
-    form = forms.INSForm(formdata=None)
-    print(form.keyword.data)
+    form = forms.INSForm()
     if form.keyword.data:
-        print(form.keyword.data)
         message = classifiers.inspyrobot(form.keyword.data.strip())
         return render_template('inspyrobot.html', form=form, message=message)
     return render_template('inspyrobot.html', form=form)
@@ -35,6 +33,14 @@ def inspyrobot():
 def inspyre():
     message = classifiers.inspyre()
     return json.dumps(message)
+
+@app.route('/cuisine',methods=['GET', 'POST'])
+def cuisine():
+    form = forms.CuisineForm()
+    if form.ingredients.data:
+        message = classifiers.csn_clf(form.ingredients.data)
+        return render_template('cuisine.html', form=form, message=message)
+    return render_template('cuisine.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)
