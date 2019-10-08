@@ -74,7 +74,7 @@ with open(f'{DIR_INS}/vocab.json', 'r') as f:
     vocab = json.loads(json.load(f))
 
 def inspyrobot(text=''):
-    if text == '' or q(text) not in ins_model.keys:
+    if text == '' or q(text) not in ins_model.keys():
         text = str(random.choice(vocab))
     sentence_finished = False
     while not sentence_finished:
@@ -91,4 +91,4 @@ def inspyrobot(text=''):
                 sentence_finished = True
     return (' '.join([t for t in text.split() if t]))
 
-inspyre = lambda: {'message': inspyrobot()}
+inspyre = lambda x: {'message': inspyrobot(x)}

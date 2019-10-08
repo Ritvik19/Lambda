@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 import json
 import forms, classifiers
 
@@ -29,9 +29,15 @@ def inspyrobot():
         return render_template('inspyrobot.html', form=form, message=message)
     return render_template('inspyrobot.html', form=form)
 
-@app.route('/inspyre')
+@app.route('/inspyre', methods=['GET', 'POST'])
+@app.route('/inspyre/', methods=['GET', 'POST'])
 def inspyre():
-    message = classifiers.inspyre()
+    keyword = request.args.get('q')
+    print(keyword)
+    if keyword is not None:
+        message = classifiers.inspyre(keyword)
+    else:
+        message = classifiers.inspyre('')
     return json.dumps(message)
 
 @app.route('/cuisine',methods=['GET', 'POST'])

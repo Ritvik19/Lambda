@@ -26,7 +26,20 @@
 {% endif %}
 
 <div class="z-depth-3 w3-padding">
-  <span class="w3-xlarge">Try out the API via: <a href="/inspyre" target="_blank">/inspyre</a></span>
+  <span class="w3-xlarge">Try out the API via:
+    <span style="text-decoration:underline;">
+      /inspyre/
+      ?q=<span id="kw" contenteditable="true" style="color:#ffe7d0 !important" onkeypress="go(event)">keyword</span>
+    </span>
+  </span>
+  <script type="text/javascript">
+  function go(e){
+    if(e.keyCode === 13){
+      e.preventDefault(); // Ensure it is only this code that rusn
+      window.open("/inspyre/?q="+document.getElementById('kw').innerHTML, '_blank');
+    }
+  }
+  </script>
 </div>
 <br><br>
 {% endblock %}
