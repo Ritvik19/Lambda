@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form action="" method="post">
+  <h1>Text Similarity</h1>
+  <h5>Get Various Text Similarity Scores For Two Given Sentences</h5>
+  <br><br>
+
+  <div class="input-field">
+    {{ form.sentence1() }}
+    {{ form.sentence1.label() }}
+  </div>
+  <div class="input-field">
+    {{ form.sentence2() }}
+    {{ form.sentence2.label() }}
+  </div>
+  <div class="input-field">
+    {{ form.submit(class="btn") }}
+  </div>
+</form>
+<br><br>
+
+{% if message %}
+
+<div class="z-depth-3 w3-padding">
+  <h4>Results</h4>
+  <table>
+    {% for m in message %}
+      <tr>
+        <td>{{ m[0] }}</td>
+        <td>{{ m[1] }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+<br><br>
+{% endif %}
+
+{% endblock %}

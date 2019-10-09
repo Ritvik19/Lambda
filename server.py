@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request
 import json
-import forms, classifiers
+import forms, classifiers, textinsights
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '79e9d3b5d183b6e620e3776f77d95f4b'
@@ -63,6 +63,22 @@ def spam():
         message = classifiers.spam_clf(form.sentence.data)
         return render_template('spam.html', form=form, message=message)
     return render_template('spam.html', form=form)
+
+@app.route('/similarity',methods=['GET', 'POST'])
+def similarity():
+    form = forms.SimilarityForm()
+    if form.sentence1.data:
+        message = [
+            ('Jaccard Similarity', textinsights.jaccard_sim(form.sentence1.data, form.sentence2.data)),
+            ('Cosine Similarity', textinsights.cosine_sim(form.sentence1.data, form.sentence2.data)),
+            ('Fuzz Ratio', textinsights.fuzz_ratio(form.sentence1.data, form.sentence2.data)),
+            ('Partial Ratio', textinsights.fuzz_partial_ratio(form.sentence1.data, form.sentence2.data)),
+            ('Token Sort Ratio', textinsights.fuzz_token_sort_ratio(form.sentence1.data, form.sentence2.data)),
+            ('Token Set Ratio', textinsights.fuzz_token_set_ratio(form.sentence1.data, form.sentence2.data)),
+        ]
+        return render_template('similarity.html', form=form, message=message)
+    return render_template('similarity.html', form=form)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

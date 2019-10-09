@@ -20,3 +20,8 @@ class SentimentForm(FlaskForm):
 class SpamForm(FlaskForm):
     sentence = StringField('Sentence')
     submit = SubmitField('Analyse')
+
+class SimilarityForm(FlaskForm):
+    sentence1  = StringField('Sentence 1')
+    sentence2  = StringField('Sentence 2')
+    submit = SubmitField('Analyse')
