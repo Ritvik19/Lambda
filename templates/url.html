@@ -20,9 +20,14 @@
 
 <div class="z-depth-3 w3-padding">
   <h4>Results</h4>
-  {% for m in message %}
-    Model {{ m[0] }} : {{ m[1] }} <br>
-  {% endfor %}
+  <table>
+    {% for m in message %}
+      <tr>
+        <td>Model {{ m[0] }}</td>
+        <td>{{ m[1] }}</td>
+      </tr>
+    {% endfor %}
+  </table>
 </div>
 <br><br>
 {% endif %}
