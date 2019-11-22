@@ -1,35 +1,28 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 
 <form action="" method="post">
-  <h1>URL Classifier</h1>
-  <h5>Classify URL as Malicious or non malicious</h5>
-  <br><br>
+    <h1>URL Classifier</h1>
+    <h5>Classify URL as Malicious or non malicious</h5>
+    <br><br>
 
-  <div class="input-field">
-    {{ form.url() }}
-    {{ form.url.label() }}
-  </div>
-  <div class="input-field">
-    {{ form.submit(class="btn") }}
-  </div>
+    <div class="input-field">
+        {{ form.url() }} {{ form.url.label() }}
+    </div>
+    <div class="input-field">
+        {{ form.submit(class="btn") }}
+    </div>
 </form>
-<br><br>
-
-{% if message %}
+<br><br> {% if message %}
 
 <div class="z-depth-3 w3-padding">
-  <h4>Results</h4>
-  <table>
-    {% for m in message %}
-      <tr>
-        <td>Model {{ m[0] }}</td>
-        <td>{{ m[1] }}</td>
-      </tr>
-    {% endfor %}
-  </table>
+    <h4>Results</h4>
+    <table>
+        {% for m in message %}
+        <tr>
+            <td>Model {{ m[0] }}</td>
+            <td>{{ m[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
-<br><br>
-{% endif %}
-
-{% endblock %}
+<br><br> {% endif %} {% endblock %}

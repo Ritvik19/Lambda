@@ -6,7 +6,7 @@ class URLForm(FlaskForm):
     submit = SubmitField('Classify')
 
 class INSForm(FlaskForm):
-    keyword = StringField('Keyword', default=' ')
+    keyword = StringField('Keyword')
     submit = SubmitField('Inspyre')
 
 class CuisineForm(FlaskForm):

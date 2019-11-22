@@ -12,7 +12,7 @@ def home():
 @app.route('/url', methods=['GET', 'POST'])
 def url_clf():
     form = forms.URLForm()
-    if form.url.data:
+    if request.method == 'POST':
         message = [
             classifiers.url_clf(form.url.data, classifiers.url_model1),
             classifiers.url_clf(form.url.data, classifiers.url_model2),
@@ -24,7 +24,7 @@ def url_clf():
 @app.route('/inspyrobot', methods=['GET', 'POST'])
 def inspyrobot():
     form = forms.INSForm()
-    if form.keyword.data:
+    if request.method == 'POST':
         message = classifiers.inspyrobot(form.keyword.data.strip())
         return render_template('inspyrobot.html', form=form, message=message)
     return render_template('inspyrobot.html', form=form)
@@ -43,7 +43,7 @@ def inspyre():
 @app.route('/cuisine',methods=['GET', 'POST'])
 def cuisine():
     form = forms.CuisineForm()
-    if form.ingredients.data:
+    if request.method == 'POST':
         message = classifiers.csn_clf(form.ingredients.data)
         return render_template('cuisine.html', form=form, message=message)
     return render_template('cuisine.html', form=form)
@@ -51,7 +51,7 @@ def cuisine():
 @app.route('/sentiment',methods=['GET', 'POST'])
 def sentiment():
     form = forms.SentimentForm()
-    if form.sentence.data:
+    if request.method == 'POST':
         message = classifiers.senti_clf(form.sentence.data)
         return render_template('sentiment.html', form=form, message=message)
     return render_template('sentiment.html', form=form)
@@ -59,7 +59,7 @@ def sentiment():
 @app.route('/spam',methods=['GET', 'POST'])
 def spam():
     form = forms.SpamForm()
-    if form.sentence.data:
+    if request.method == 'POST':
         message = classifiers.spam_clf(form.sentence.data)
         return render_template('spam.html', form=form, message=message)
     return render_template('spam.html', form=form)
@@ -67,7 +67,7 @@ def spam():
 @app.route('/similarity',methods=['GET', 'POST'])
 def similarity():
     form = forms.SimilarityForm()
-    if form.sentence1.data:
+    if request.method == 'POST':
         message = [
             ('Jaccard Similarity', textinsights.jaccard_sim(form.sentence1.data, form.sentence2.data)),
             ('Cosine Similarity', textinsights.cosine_sim(form.sentence1.data, form.sentence2.data)),
